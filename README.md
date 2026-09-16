@@ -58,8 +58,12 @@ python -m http.server 5174
 
 ## 5. 배포
 
-정적 사이트이므로 GitHub Pages · Vercel · Netlify 어디든 폴더째 올리면 됩니다. 빌드 설정이 없습니다.
-도메인을 연결한 뒤 `index.html` 의 `og:` 메타에 대표 이미지(`og:image`)를 더해 주세요.
+- 저장소: https://github.com/a57730884-pixel/dongtan-eunhye-foodmarket
+- 공개 주소(GitHub Pages, main 브랜치 루트): https://a57730884-pixel.github.io/dongtan-eunhye-foodmarket/
+
+정적 사이트이므로 빌드 설정이 없습니다. 파일을 고치고 `git push` 하면 1~2분 뒤 공개 주소에 반영됩니다.
+자체 도메인을 쓰려면 GitHub 저장소 ▸ Settings ▸ Pages 에서 도메인을 연결하고, `index.html` 의 `og:` 메타에 대표 이미지(`og:image`)를 더해 주세요.
+Vercel · Netlify 로 옮겨도 폴더째 올리면 그대로 동작합니다.
 
 ## 6. 확인 · 채워야 할 것
 
