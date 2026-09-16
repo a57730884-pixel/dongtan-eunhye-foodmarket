@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>아카이브 | 동탄 은혜푸드마켓</title>
+  <meta name="description" content="은혜푸드마켓 언론 보도, 활동 소식, 운영 실적, 공지사항 아카이브" />
+  <meta name="theme-color" content="#1e7a4a" />
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=2" />
+</head>
+<body>
+<main id="main">
+
+  <section class="page-hero">
+    <div class="ph-inner">
+      <p class="ph-eyebrow">ARCHIVE</p>
+      <h1>아카이브</h1>
+      <p>2016년 발대식부터 오늘까지. 언론이 보도한 기사, 우리가 남긴 활동 기록, 해마다 정리한 운영 실적을 한곳에 모았습니다.</p>
+      <nav class="ph-tabs" aria-label="아카이브 분류">
+        <a href="#press">언론 보도</a><a href="#activity">활동 소식</a><a href="#report">운영 실적</a><a href="#notice">공지사항</a>
+      </nav>
+    </div>
+  </section>
+
+  <section class="block" id="boardTop">
+    <div class="container">
+      <div class="board-tools">
+        <div class="tabs" id="tabs"></div>
+        <div class="board-search">
+          <select id="year" aria-label="연도"><option value="">전체 연도</option></select>
+          <input type="search" id="q" placeholder="제목 · 내용 · 언론사 검색" aria-label="검색" />
+        </div>
+      </div>
+      <p class="small muted" id="resultCount"></p>
+      <ul class="board" id="boardList"></ul>
+      <div class="pager" id="pager"></div>
+      <p class="hint mt-3">언론 보도는 각 언론사의 원문 페이지로 연결됩니다. 기사 원문의 저작권은 해당 언론사에 있으며, 여기에는 제목과 요약만 싣습니다.</p>
+    </div>
+  </section>
+
+  <!-- 본문 창 -->
+  <div class="modal-bg" id="modalBg" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <div class="modal">
+      <button type="button" class="m-close" id="mClose" aria-label="닫기">×</button>
+      <h2 id="mTitle"></h2>
+      <p class="m-meta" id="mMeta"></p>
+      <div class="m-body" id="mBody"></div>
+    </div>
+  </div>
+
+</main>
+
+<script src="js/config.js?v=2"></script>
+<script src="js/layout.js?v=2"></script>
+<script src="data/archive.js?v=2"></script>
+<script src="js/archive.js?v=2"></script>
+</body>
+</html>

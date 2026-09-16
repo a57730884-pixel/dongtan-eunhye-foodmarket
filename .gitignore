@@ -1,0 +1,12 @@
+# 윈도우 · OneDrive 가 만드는 파일
+desktop.ini
+Thumbs.db
+.DS_Store
+
+# 실제 기탁·이용자 대장, 결산 원본은 저장소에 올리지 않습니다 (개인정보)
+#  samples/ 의 엑셀은 프로그램이 만든 가짜 예시 자료라 예외입니다
+data/private/
+docs/원본/
+*.hwp
+*.hwpx
+*.docx

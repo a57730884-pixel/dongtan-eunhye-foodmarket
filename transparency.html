@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>투명 공개 | 동탄 은혜푸드마켓</title>
+  <meta name="description" content="연도별 · 월별 기부물품 접수와 전달, 이용 현황, 수입 · 지출 결산을 그래프와 표로 공개합니다." />
+  <meta name="theme-color" content="#1e7a4a" />
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=2" />
+</head>
+<body>
+<main id="main">
+
+  <section class="page-hero">
+    <div class="ph-inner">
+      <p class="ph-eyebrow">TRANSPARENCY</p>
+      <h1>투명 공개</h1>
+      <p>기탁받은 물품이 어디로 갔는지, 후원금이 어떻게 쓰였는지. 모든 그래프는 <b>표</b>로도 볼 수 있고 그림 파일로 저장할 수 있습니다.</p>
+      <nav class="ph-tabs" aria-label="투명 공개 하위 메뉴">
+        <a href="#summary">한눈에 보기</a><a href="#donation">기부물품 통계</a><a href="#users">이용 현황</a><a href="#finance">재정 결산</a><a href="#docs">공개 문서</a>
+      </nav>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="callout warn mt-3" id="sampleBanner" hidden>
+      <p style="margin:0"><span class="badge badge-sample">예시 데이터</span> &nbsp;지금 보이는 숫자는 화면 구성을 위한 <b>예시</b>입니다. 결산이 확정되면 <code>data/finance.js</code>를 실제 자료로 바꾸고 <code>sample: false</code>로 고치세요. 엑셀 자료가 있다면 <a href="analyze.html">데이터 분석</a>에서 먼저 그래프를 확인해 볼 수 있습니다.</p>
+    </div>
+  </div>
+
+  <!-- 한눈에 보기 -->
+  <section class="block" id="summary">
+    <div class="container">
+      <div class="sec-head">
+        <div>
+          <h2 class="section-title"><span data-year-last></span>년 한눈에 보기</h2>
+          <p class="sec-desc">기준: <span data-basis></span> · 마지막 갱신 <span data-updated></span></p>
+        </div>
+      </div>
+      <div class="kpi-row" id="kpiRow"></div>
+      <div class="principles mt-4">
+        <div class="principle"><span class="p-num">₩</span><h3>금액은 이렇게 셉니다</h3><p data-note></p></div>
+        <div class="principle"><span class="p-num">#</span><h3>사람은 이렇게 셉니다</h3><p>이용 등록자는 연말 기준 등록된 개인, 이용 가구는 세대 기준입니다. 이용 건수는 마켓 방문 · 뱅크 배분 · 그냥드림 이용을 모두 더한 값입니다.</p></div>
+        <div class="principle"><span class="p-num">✓</span><h3>누가 확인합니까</h3><p>월별 실적은 경기도 푸드뱅크 전산망과 화성시에 보고되고, 연간 결산은 이사회 승인 뒤 공개합니다. 오류를 발견하시면 알려 주세요. 바로잡고 기록을 남깁니다.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 기부물품 통계 -->
+  <section class="block bg-cream" id="donation">
+    <div class="container">
+      <h2 class="section-title">기부물품 통계</h2>
+      <div class="chart-grid">
+        <div class="span2" id="chYears"></div>
+        <div class="span2" id="chMonthly"></div>
+        <div id="chCategories"></div>
+        <div id="chDonorTypes"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 이용 현황 -->
+  <section class="block" id="users">
+    <div class="container">
+      <h2 class="section-title">이용 현황</h2>
+      <div class="chart-grid">
+        <div id="chUsers"></div>
+        <div id="chVisits"></div>
+        <div class="span2" id="chGnd"></div>
+      </div>
+      <h3 style="font-size:1.2rem;margin:36px 0 12px">연도별 운영 실적 표</h3>
+      <div class="table-wrap" id="yearsTable"></div>
+      <p class="source-note">출처: <span data-basis></span>. 전달률 = 이웃에게 전달한 금액 ÷ 접수한 기부물품 금액. 남은 물품은 다음 해로 이월하거나 유통기한에 따라 규정대로 폐기하며 폐기량도 연간 보고서에 적습니다.</p>
+    </div>
+  </section>
+
+  <!-- 재정 결산 -->
+  <section class="block bg-gray" id="finance">
+    <div class="container">
+      <h2 class="section-title">재정 결산 (현금 수입 · 지출)</h2>
+      <p class="muted">기부물품(현물)과 별도로, 보조금 · 후원금 등 현금의 수입과 지출입니다.</p>
+      <div class="chart-grid mt-3">
+        <div id="chIncome"></div>
+        <div id="chExpense"></div>
+      </div>
+      <div class="mt-3" id="budgetTable"></div>
+    </div>
+  </section>
+
+  <!-- 공개 문서 -->
+  <section class="block" id="docs">
+    <div class="container two-col">
+      <div>
+        <h2 class="section-title">공개 문서</h2>
+        <ul class="check-list" id="docList"></ul>
+        <p class="hint">결산서 · 운영실적 보고서 PDF는 확정되는 대로 <code>docs/</code> 폴더에 넣고 <code>data/finance.js</code>의 documents 항목에 경로를 적으면 내려받기 링크가 됩니다.</p>
+      </div>
+      <div class="callout">
+        <p><b>자료를 갱신하는 방법</b></p>
+        <ol style="margin:0 0 0 1.1em">
+          <li>월별 실적 엑셀을 <a href="analyze.html">데이터 분석</a>에 올려 그래프와 합계를 확인합니다.</li>
+          <li>확인한 숫자를 <code>data/finance.js</code>의 해당 항목에 적습니다 (월별은 monthly, 연도별은 years).</li>
+          <li>갱신 날짜(meta.updated)를 고치고 저장하면 이 페이지의 모든 그래프와 표가 함께 바뀝니다.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="js/config.js?v=2"></script>
+<script src="js/layout.js?v=2"></script>
+<script src="data/finance.js?v=2"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="js/charts.js?v=2"></script>
+<script src="js/transparency.js?v=2"></script>
+</body>
+</html>
