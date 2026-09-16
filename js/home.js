@@ -1,77 +1,75 @@
 /* ============================================================
-   첫 화면 — 숫자 카드 · 최근 소식 · 연도별 그래프 · 연혁 요약
+   첫 화면 — 슬라이더 · 숫자 타일 · 연도별 그래프 · 함께한 순간들 · 언론 보도
    ============================================================ */
 (function () {
-  var F = window.FINANCE, A = window.ARCHIVE || [], H = window.HISTORY || [], esc = EFM.esc;
+  var F = window.FINANCE, A = window.ARCHIVE || [], O = window.ORG || {}, esc = EFM.esc;
   var years = F.years.slice().sort(function (a, b) { return a.year - b.year; });
   var last = years[years.length - 1], prev = years[years.length - 2];
+  function pad2(n) { return (n < 10 ? "0" : "") + n; }
 
-  /* ---- 히어로 신뢰 카드 ---- */
-  var tc = document.getElementById("trustCard");
-  if (tc) {
-    tc.innerHTML =
-      "<h3>" + last.year + "년 한 해, 숫자로 보는 나눔" + (F.meta.sample ? ' <span class="badge badge-sample">예시</span>' : "") + "</h3>" +
-      '<div class="tc-row"><span class="tc-label">기부물품 접수</span><span class="tc-val">' + esc(EFM.fmtWonShort(last.donated)) + "</span></div>" +
-      '<div class="tc-row"><span class="tc-label">이웃에게 전달</span><span class="tc-val">' + esc(EFM.fmtWonShort(last.distributed)) + "</span></div>" +
-      '<div class="tc-row"><span class="tc-label">이용 등록 가구</span><span class="tc-val">' + EFM.fmtNum(last.households) + "<small>가구</small></span></div>" +
-      '<div class="tc-row"><span class="tc-label">함께한 기탁처</span><span class="tc-val">' + EFM.fmtNum(last.donors) + "<small>곳</small></span></div>" +
-      '<p class="tc-foot">기준: ' + esc(F.meta.basis) + " · " + esc(EFM.fmtDate(F.meta.updated)) + ' 갱신 · <a href="transparency.html">전체 통계 보기</a></p>';
-  }
+  /* ---- 첫 화면 슬라이더 ---- */
+  (function () {
+    var slides = [].slice.call(document.querySelectorAll(".hero-slide")), i = 0, timer;
+    var title = document.getElementById("heroTitle"), tag = document.getElementById("heroTag"), idx = document.getElementById("heroIdx");
+    document.getElementById("heroTotal").textContent = pad2(slides.length);
+    function show(n) {
+      i = (n + slides.length) % slides.length;
+      slides.forEach(function (s, k) { s.classList.toggle("active", k === i); });
+      var s = slides[i];
+      title.innerHTML = esc(s.dataset.title).split("|").join("<br>");
+      tag.textContent = s.dataset.tag;
+      idx.textContent = pad2(i + 1);
+    }
+    function auto() { clearInterval(timer); timer = setInterval(function () { show(i + 1); }, 7000); }
+    document.getElementById("heroPrev").addEventListener("click", function () { show(i - 1); auto(); });
+    document.getElementById("heroNext").addEventListener("click", function () { show(i + 1); auto(); });
+    var hero = document.getElementById("hero");
+    hero.addEventListener("mouseenter", function () { clearInterval(timer); });
+    hero.addEventListener("mouseleave", auto);
+    document.addEventListener("keydown", function (e) { if (e.key === "ArrowRight") { show(i + 1); auto(); } if (e.key === "ArrowLeft") { show(i - 1); auto(); } });
+    show(0); auto();
+  })();
 
-  /* ---- 누적 숫자 (스크롤하면 세어 올라감) ---- */
+  /* ---- 몇 년째 ---- */
+  var nth = new Date().getFullYear() - 2016 + 1;
+  var bn = document.getElementById("bigYears"); if (bn) bn.innerHTML = nth + "<small>년째</small>";
+
+  /* ---- 숫자 타일 (스크롤하면 세어 올라감) ---- */
   var totalDonated = years.reduce(function (s, y) { return s + y.donated; }, 0);
   var totalVisits = years.reduce(function (s, y) { return s + y.visits; }, 0);
-  var since = 2016, nth = new Date().getFullYear() - since + 1;
   var kpis = [
-    { label: "누적 기부물품 (" + years[0].year + "~" + last.year + ")", val: totalDonated, unit: "won" },
+    { label: years[0].year + "~" + last.year + " 누적 기부물품", val: totalDonated, unit: "won" },
     { label: "누적 이용 건수", val: totalVisits, unit: "count", suffix: "건" },
-    { label: last.year + "년 이용 등록자", val: last.users, unit: "count", suffix: "명",
-      delta: prev ? Math.round((last.users - prev.users) / prev.users * 100) : null },
-    { label: "동탄에서 나눔을 이어온 지", val: nth, unit: "count", suffix: "년째", prefix: since + "년부터 " }
+    { label: last.year + "년 이용 등록자", val: last.users, unit: "count", suffix: "명", delta: prev ? Math.round((last.users - prev.users) / prev.users * 100) : null },
+    { label: last.year + "년 함께한 기탁처", val: last.donors, unit: "count", suffix: "곳", delta: prev ? Math.round((last.donors - prev.donors) / prev.donors * 100) : null }
   ];
   var row = document.getElementById("kpiRow");
   if (row) {
-    row.innerHTML = kpis.map(function (k, i) {
-      var d = k.delta != null ? '<div class="k-delta">전년 대비 <b class="' + (k.delta < 0 ? "down" : "") + '">' + (k.delta > 0 ? "+" : "") + k.delta + "%</b></div>" : (k.prefix ? '<div class="k-delta">' + esc(k.prefix) + "</div>" : "");
-      return '<div class="kpi' + (i === 0 ? " kpi-accent" : "") + '"><div class="k-label">' + esc(k.label) + '</div><div class="k-val" data-count="' + k.val + '" data-unit="' + k.unit + '">' +
+    row.innerHTML = kpis.map(function (k, n) {
+      var d = k.delta != null ? '<div class="k-delta">전년 대비 <b class="' + (k.delta < 0 ? "down" : "") + '">' + (k.delta > 0 ? "+" : "") + k.delta + "%</b></div>" : '<div class="k-delta">' + (F.meta.sample ? '<span class="badge badge-sample">예시 수치</span>' : "기준 " + esc(EFM.fmtDate(F.meta.updated))) + "</div>";
+      return '<div class="kpi' + (n === 0 ? " kpi-accent" : "") + '"><div class="k-label">' + esc(k.label) + '</div><div class="k-val" data-count="' + k.val + '" data-unit="' + k.unit + '">' +
         (k.unit === "won" ? esc(EFM.fmtWonShort(k.val)) : EFM.fmtNum(k.val)) + (k.suffix ? "<small>" + k.suffix + "</small>" : "") + "</div>" + d + "</div>";
     }).join("");
-    /* 세어 올라가는 효과 */
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (!en.isIntersecting) return; io.unobserve(en.target);
-        var el = en.target, target = +el.dataset.count, unit = el.dataset.unit, small = el.querySelector("small"), t0 = performance.now();
+        var el = en.target, target = +el.dataset.count, unit = el.dataset.unit, t0 = performance.now();
         (function tick(now) {
-          var p = Math.min(1, (now - t0) / 1200), e = 1 - Math.pow(1 - p, 3), v = target * e;
+          var p = Math.min(1, (now - t0) / 1400), e = 1 - Math.pow(1 - p, 3), v = target * e;
           el.firstChild.nodeValue = unit === "won" ? EFM.fmtWonShort(v) : EFM.fmtNum(v);
           if (p < 1) requestAnimationFrame(tick);
         })(t0);
-        if (small) el.appendChild(small);
       });
     }, { threshold: .4 });
     row.querySelectorAll(".k-val").forEach(function (el) { el.firstChild.nodeValue = el.dataset.unit === "won" ? "0원" : "0"; io.observe(el); });
   }
-
-  /* ---- 최근 소식 ---- */
-  function list(items, elId) {
-    var el = document.getElementById(elId); if (!el) return;
-    if (!items.length) { el.innerHTML = '<li class="muted small">아직 등록된 글이 없습니다.</li>'; return; }
-    el.innerHTML = items.map(function (it) {
-      var href = it.url ? it.url : "archive.html#" + it.cat + "?id=" + it.id;
-      var ext = it.url ? ' target="_blank" rel="noopener"' : "";
-      return "<li><a href=\"" + esc(href) + '"' + ext + '><span class="n-title"><span class="n-src">' + esc(it.source || EFM.catLabel[it.cat]) + "</span>" + esc(it.title) + '</span><span class="n-date">' + esc(EFM.fmtDate(it.date)) + "</span></a></li>";
-    }).join("");
-  }
-  var sorted = A.slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; });
-  list(sorted.filter(function (x) { return x.cat === "press"; }).slice(0, 5), "homePress");
-  list(sorted.filter(function (x) { return x.cat !== "press"; }).slice(0, 5), "homeNews");
 
   /* ---- 연도별 그래프 ---- */
   if (window.Chart && document.getElementById("homeChart")) {
     EFM.chart.card({
       el: "homeChart", type: "bar", unit: "won",
       title: "연도별 기부물품 접수 · 전달 금액",
-      sub: "접수한 기부물품의 평가액과 실제 이웃에게 전달한 금액을 해마다 비교합니다.",
+      sub: "접수한 기부물품의 평가액과 실제 이웃에게 전달한 금액",
       data: { labels: years.map(function (y) { return y.year + "년"; }), datasets: [
         { label: "접수", data: years.map(function (y) { return y.donated; }) },
         { label: "전달", data: years.map(function (y) { return y.distributed; }) }
@@ -80,11 +78,37 @@
     });
   }
 
-  /* ---- 연혁 요약 (최근 4건) ---- */
-  var hl = document.getElementById("homeHistory");
-  if (hl) {
-    hl.innerHTML = H.slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; }).slice(0, 4).map(function (h) {
-      return '<li><span class="t-date">' + esc(EFM.fmtDate(h.date)) + '</span><span class="badge t-tag">' + esc(h.tag) + "</span><h3>" + esc(h.title) + "</h3><p>" + esc(h.desc) + "</p></li>";
+  /* ---- 함께한 순간들 (사진 슬라이더) ---- */
+  (function () {
+    var stories = [
+      { img: "images/photo/story-1.jpg", date: "2026.08.19", title: "찾아가는 그냥드림, 동탄9동 첫 순회", desc: "행정복지센터 앞에 부스를 열고 먹거리와 생필품을 전했습니다. 거동이 불편해 사업장까지 오기 어려웠던 이웃들이 많이 찾아 주셨습니다.", href: "archive.html#activity?id=a-2026-08-19" },
+      { img: "images/photo/story-2.jpg", date: "2026.05.14", title: "㈜미트리 가정의 달 기탁, 제품 1,240개", desc: "기탁 물품은 접수 즉시 기록하고 이용 가정에 순차적으로 전달했습니다. 따뜻한 나눔에 감사드립니다.", href: "archive.html#activity?id=a-2026-05-14" },
+      { img: "images/photo/story-3.jpg", date: "2026.01.15", title: "그냥드림 동탄권 거점 운영 시작", desc: "신분증도 서류도 없이 필요한 물품을 가져갈 수 있는 코너를 열었습니다. 이용 뒤 필요한 분은 동 행정복지센터와 연결합니다.", href: "archive.html#activity?id=a-2026-01-15" },
+      { img: "images/photo/story-4.jpg", date: "2018.07.21", title: "장안면 어르신 초청 작은 음악회", desc: "행복나눔오케스트라, 나눔의교회, 에바다중창단과 함께 어르신 80분을 모시고 공연과 식사를 나눴습니다.", href: "archive.html#activity?id=a-2018-07-21" }
+    ];
+    var i = 0, photo = document.getElementById("storyPhoto"); if (!photo) return;
+    document.getElementById("storyTotal").textContent = pad2(stories.length);
+    function show(n) {
+      i = (n + stories.length) % stories.length; var s = stories[i];
+      photo.style.backgroundImage = "url(" + s.img + ")"; photo.setAttribute("aria-label", s.title);
+      document.getElementById("storyDate").textContent = s.date;
+      document.getElementById("storyTitle").innerHTML = '<a href="' + esc(s.href) + '">' + esc(s.title) + "</a>";
+      document.getElementById("storyDesc").textContent = s.desc;
+      document.getElementById("storyIdx").textContent = pad2(i + 1);
+    }
+    document.getElementById("storyPrev").addEventListener("click", function () { show(i - 1); });
+    document.getElementById("storyNext").addEventListener("click", function () { show(i + 1); });
+    show(0);
+  })();
+
+  /* ---- 언론 보도 ---- */
+  var pl = document.getElementById("homePress");
+  if (pl) {
+    var press = A.filter(function (x) { return x.cat === "press"; }).sort(function (a, b) { return a.date < b.date ? 1 : -1; }).slice(0, 6);
+    pl.innerHTML = press.map(function (it) {
+      return '<li><a href="' + esc(it.url) + '" target="_blank" rel="noopener"><span class="n-date">' + esc(EFM.fmtDate(it.date)) + '</span><span class="n-title">' + esc(it.title) + '</span><span class="n-src">' + esc(it.source) + " ↗</span></a></li>";
     }).join("");
   }
+
+  var cp = document.getElementById("ctaPhone"); if (cp && O.phone) cp.textContent = O.phone + " · 전화 한 통이면 찾아갑니다";
 })();

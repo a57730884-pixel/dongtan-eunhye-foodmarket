@@ -5,19 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>사업안내 | 동탄 은혜푸드마켓</title>
   <meta name="description" content="동탄 은혜푸드마켓 인사말, 비전과 목표, 운영체계, 걸어온 길, 오시는 길" />
-  <meta name="theme-color" content="#1e7a4a" />
+  <meta name="theme-color" content="#2b2b2b" />
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=2" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Nunito:wght@200;300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=4" />
 </head>
 <body>
 <main id="main">
 
-  <section class="page-hero">
-    <div class="ph-inner">
-      <p class="ph-eyebrow">ABOUT</p>
+  <section class="page-banner" style="background-image:url(images/photo/banner-about.jpg)">
+    <div class="container">
+      <span class="eyebrow">ABOUT</span>
       <h1>사업안내</h1>
       <p>2016년 동탄에서 시작한 먹거리 나눔. 은혜푸드마켓이 누구이고, 무엇을 어떻게 하는지 소개합니다.</p>
       <nav class="ph-tabs" aria-label="사업안내 하위 메뉴">
@@ -50,7 +50,6 @@
               <tr><th>특별 사업</th><td>화성시 그냥드림 동탄권 거점 (2026~)</td></tr>
             </table>
           </div>
-          <p class="hint">기관 정보는 <code>js/config.js</code> 한 곳에서 관리합니다.</p>
         </div>
       </div>
     </div>
@@ -60,11 +59,11 @@
   <section class="block bg-cream" id="vision">
     <div class="container">
       <h2 class="section-title">비전 · 목표</h2>
-      <p class="lead" style="max-width:760px">"먹거리 걱정 없는 동탄, 투명한 나눔으로 잇는 이웃"</p>
+      <p class="lead" style="max-width:760px;font-size:1.35rem;color:var(--ink);font-weight:300">먹거리 걱정 없는 동탄,<br />투명한 나눔으로 잇는 이웃</p>
       <div class="principles mt-3">
-        <div class="principle"><span class="p-num">1</span><h3>사각지대 없는 먹거리 안전망</h3><p>이용 신청이 어려운 분도 그냥드림과 찾아가는 나눔으로 만납니다. 동 행정복지센터와 함께 위기 가구를 찾아냅니다.</p></div>
-        <div class="principle"><span class="p-num">2</span><h3>기록하고 공개하는 운영</h3><p>기탁·배분·회계를 빠짐없이 기록하고 홈페이지에 공개합니다. 기탁자와 후원자가 결과를 확인할 수 있는 나눔을 만듭니다.</p></div>
-        <div class="principle"><span class="p-num">3</span><h3>지역이 함께 만드는 나눔망</h3><p>기업·마트·교회·병원·개인이 각자의 방식으로 참여하는 협약망을 넓히고, 남는 것이 버려지지 않고 이웃에게 닿게 합니다.</p></div>
+        <div class="principle"><span class="p-num">01</span><h3>사각지대 없는 먹거리 안전망</h3><p>이용 신청이 어려운 분도 그냥드림과 찾아가는 나눔으로 만납니다. 동 행정복지센터와 함께 위기 가구를 찾아냅니다.</p></div>
+        <div class="principle"><span class="p-num">02</span><h3>기록하고 공개하는 운영</h3><p>기탁·배분·회계를 빠짐없이 기록하고 홈페이지에 공개합니다. 기탁자와 후원자가 결과를 확인할 수 있는 나눔을 만듭니다.</p></div>
+        <div class="principle"><span class="p-num">03</span><h3>지역이 함께 만드는 나눔망</h3><p>기업·마트·교회·병원·개인이 각자의 방식으로 참여하는 협약망을 넓히고, 남는 것이 버려지지 않고 이웃에게 닿게 합니다.</p></div>
       </div>
       <div class="two-col mt-4">
         <div>
@@ -124,10 +123,10 @@
   </section>
 
   <!-- 걸어온 길 -->
-  <section class="block bg-gray" id="history">
+  <section class="block bg-cream" id="history">
     <div class="container">
       <h2 class="section-title">걸어온 길</h2>
-      <p class="muted">출처가 있는 항목은 제목 옆 링크로 기사 원문을 볼 수 있습니다. 전체 기사는 <a href="archive.html#press" style="color:var(--green);font-weight:600">아카이브 › 언론 보도</a>에 있습니다.</p>
+      <p class="muted">출처가 있는 항목은 제목 옆 링크로 기사 원문을 볼 수 있습니다. 전체 기사는 <a href="archive.html#press" class="tan-link">아카이브 › 언론 보도</a>에 있습니다.</p>
       <ul class="timeline mt-3" id="historyList"></ul>
     </div>
   </section>
@@ -147,16 +146,16 @@
           </table>
           <div class="map-links" id="mapLinks"></div>
         </div>
-        <div class="map-placeholder" id="mapBox"></div>
+        <div class="map-placeholder" id="mapBox" style="background-image:url(images/photo/banner-about.jpg)"></div>
       </div>
     </div>
   </section>
 
 </main>
 
-<script src="js/config.js?v=2"></script>
-<script src="js/layout.js?v=2"></script>
-<script src="data/history.js?v=2"></script>
+<script src="js/config.js?v=3"></script>
+<script src="js/layout.js?v=3"></script>
+<script src="data/history.js?v=3"></script>
 <script>
 (function () {
   var esc = EFM.esc, O = window.ORG;
@@ -175,7 +174,7 @@
   document.getElementById("dPhone").innerHTML = '<a href="tel:' + esc(O.phone.replace(/-/g, "")) + '">' + esc(O.phone) + "</a>";
   document.getElementById("dHours").textContent = O.hours + " (" + O.hoursNote + ")";
   document.getElementById("mapLinks").innerHTML = '<a class="btn btn-outline btn-sm" href="' + esc(O.mapKakao) + '" target="_blank" rel="noopener">카카오맵 ↗</a><a class="btn btn-outline btn-sm" href="' + esc(O.mapNaver) + '" target="_blank" rel="noopener">네이버지도 ↗</a>';
-  document.getElementById("mapBox").innerHTML = "<div><p style='font-size:2rem;margin:0'>📍</p><p><b>" + esc(O.address) + "</b></p><p class='small'>지도 API 키를 넣으면 이 자리에 약도가 표시됩니다.<br>지금은 카카오맵 · 네이버지도 버튼으로 길찾기를 엽니다.</p></div>";
+  document.getElementById("mapBox").innerHTML = "<div>" + EFM.icon("pin", "ico-lg") + "<p style='margin-top:10px'><b>" + esc(O.address) + "</b></p><p class='small' style='opacity:.8'>" + esc(O.hours) + " · " + esc(O.hoursNote) + "</p></div>";
 })();
 </script>
 </body>

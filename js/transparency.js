@@ -72,7 +72,7 @@
   C.card({ el: "chIncome", type: "bar", horizontal: true, unit: "won", share: true, title: B.year + "년 수입 구성", sub: "총 수입 " + EFM.fmtWonShort(incT),
     data: { labels: inc.map(function (r) { return r.name; }), datasets: [{ label: "금액", data: inc.map(function (r) { return r.value; }) }] }, rowHeader: "수입 항목", foot: srcFoot });
   C.card({ el: "chExpense", type: "bar", horizontal: true, unit: "won", share: true, title: B.year + "년 지출 구성", sub: "총 지출 " + EFM.fmtWonShort(expT),
-    data: { labels: exp.map(function (r) { return r.name; }), datasets: [{ label: "금액", data: exp.map(function (r) { return r.value; }) }] }, rowHeader: "지출 항목", foot: srcFoot, colors: ["#eb6834"] });
+    data: { labels: exp.map(function (r) { return r.name; }), datasets: [{ label: "금액", data: exp.map(function (r) { return r.value; }) }] }, rowHeader: "지출 항목", foot: srcFoot, colors: ["#2b2b2b"] });
 
   var bt = document.getElementById("budgetTable");
   if (bt) {

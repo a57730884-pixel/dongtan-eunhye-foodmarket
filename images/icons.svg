@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <!-- 선 아이콘 모음 — stroke=currentColor, 1.4px. <svg class="ico"><use href="images/icons.svg#basket"/></svg> 로 씁니다 -->
+  <symbol id="basket" viewBox="0 0 32 32"><path d="M4 13h24l-2.6 13.2a2 2 0 0 1-2 1.8H8.6a2 2 0 0 1-2-1.8z"/><path d="M10 13l4.5-8M22 13l-4.5-8"/><path d="M12 18v5M16 18v5M20 18v5"/></symbol>
+  <symbol id="truck" viewBox="0 0 32 32"><path d="M3 8h17v14H3z"/><path d="M20 12h5.5L29 16.5V22h-9"/><circle cx="9" cy="24" r="2.5"/><circle cx="23" cy="24" r="2.5"/></symbol>
+  <symbol id="bowl" viewBox="0 0 32 32"><path d="M4 15h24c0 6-4 10-8 11H12c-4-1-8-5-8-11z"/><path d="M11 10c0-3 3-3 3-6M17 10c0-3 3-3 3-6"/><path d="M12 29h8"/></symbol>
+  <symbol id="ledger" viewBox="0 0 32 32"><path d="M7 4h15l4 4v20H7z"/><path d="M22 4v4h4"/><path d="M11 13h10M11 18h10M11 23h6"/></symbol>
+  <symbol id="eye" viewBox="0 0 32 32"><path d="M3 16s5-8 13-8 13 8 13 8-5 8-13 8S3 16 3 16z"/><circle cx="16" cy="16" r="3.5"/></symbol>
+  <symbol id="shield" viewBox="0 0 32 32"><path d="M16 3l10 4v8c0 7-4.5 11.5-10 14C10.5 26.5 6 22 6 15V7z"/><path d="M11.5 16l3 3 6-6"/></symbol>
+  <symbol id="link" viewBox="0 0 32 32"><path d="M13 19a5 5 0 0 0 7 0l4-4a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M19 13a5 5 0 0 0-7 0l-4 4a5 5 0 0 0 7 7l1.5-1.5"/></symbol>
+  <symbol id="mail" viewBox="0 0 32 32"><path d="M4 8h24v17H4z"/><path d="M4 9l12 9 12-9"/></symbol>
+  <symbol id="phone" viewBox="0 0 32 32"><path d="M8 4h5l2.5 6-3 2a14 14 0 0 0 7.5 7.5l2-3 6 2.5v5c0 1.5-1.3 2.8-2.8 2.8A22 22 0 0 1 5 6.8C5 5.3 6.5 4 8 4z"/></symbol>
+  <symbol id="pin" viewBox="0 0 32 32"><path d="M16 29s9-9 9-16a9 9 0 0 0-18 0c0 7 9 16 9 16z"/><circle cx="16" cy="13" r="3.5"/></symbol>
+  <symbol id="clock" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="M16 9v7l5 3"/></symbol>
+  <symbol id="box" viewBox="0 0 32 32"><path d="M4 10l12-6 12 6v13l-12 6-12-6z"/><path d="M4 10l12 6 12-6M16 16v13"/></symbol>
+  <symbol id="receipt" viewBox="0 0 32 32"><path d="M8 3h16v26l-3-2-2.6 2-2.4-2-2.4 2-2.6-2-3 2z"/><path d="M12 10h8M12 15h8M12 20h5"/></symbol>
+  <symbol id="hand" viewBox="0 0 32 32"><path d="M8 17V8.5a2 2 0 0 1 4 0V15"/><path d="M12 14V5.5a2 2 0 0 1 4 0V14"/><path d="M16 13.5V7a2 2 0 0 1 4 0v9"/><path d="M20 16v-4.5a2 2 0 0 1 4 0V20c0 5-3 9-8 9-4 0-6-2-8-5l-3.5-5.5a1.8 1.8 0 0 1 3-2L8 17"/></symbol>
+  <symbol id="chart" viewBox="0 0 32 32"><path d="M4 27h24"/><path d="M8 22v-7M14 22V9M20 22v-4M26 22V12"/></symbol>
+  <symbol id="news" viewBox="0 0 32 32"><path d="M5 6h20v20H7a2 2 0 0 1-2-2z"/><path d="M25 10h3v14a2 2 0 0 1-2 2"/><path d="M9 11h6v6H9zM18 11h4M18 15h4M9 21h13"/></symbol>
+  <symbol id="file-xls" viewBox="0 0 32 32"><path d="M7 3h13l5 5v21H7z"/><path d="M20 3v5h5"/><path d="M11 14l6 8M17 14l-6 8"/><path d="M20 16v6h3"/></symbol>
+  <symbol id="arrow-l" viewBox="0 0 32 32"><path d="M26 16H6M12 10l-6 6 6 6"/></symbol>
+  <symbol id="arrow-r" viewBox="0 0 32 32"><path d="M6 16h20M20 10l6 6-6 6"/></symbol>
+  <symbol id="chev-down" viewBox="0 0 32 32"><path d="M6 11l10 10 10-10"/></symbol>
+</svg>

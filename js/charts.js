@@ -12,12 +12,16 @@
   window.EFM = window.EFM || {};
   var C = EFM.chart = {};
 
+  /* 계열 셋 이상: 색약 검증을 통과한 순서(바꾸지 말 것).
+     계열 둘: 짙은 회색 + 황갈색 듀오톤 — 명도 차이로 구분되므로 누구에게나 읽히며, 범례·표가 함께 붙는다.
+     계열 하나: 어두운 황갈색. */
   C.palette = ["#1baf7a", "#eb6834", "#2a78d6", "#eda100", "#4a3aa7", "#e87ba4"];
-  C.brand = "#1e7a4a";
+  C.duo = ["#2b2b2b", "#c8a27a"];
+  C.brand = "#a9835c";
   C.surface = "#ffffff";
-  C.grid = "#eceeea";
-  C.text = "#374151";
-  C.muted = "#6b7280";
+  C.grid = "#ebe7e1";
+  C.text = "#3d3d3d";
+  C.muted = "#8a8a8a";
 
   function alpha(hex, a) {
     var r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
@@ -37,7 +41,7 @@
   C.setup = function () {
     if (!window.Chart || C._ready) return;
     C._ready = true;
-    Chart.defaults.font.family = '"Noto Sans KR", -apple-system, "Malgun Gothic", sans-serif';
+    Chart.defaults.font.family = '"Nunito", "Noto Sans KR", -apple-system, "Malgun Gothic", sans-serif';
     Chart.defaults.font.size = 12;
     Chart.defaults.color = C.muted;
     Chart.defaults.plugins.legend.labels.usePointStyle = true;
@@ -45,9 +49,9 @@
     Chart.defaults.plugins.legend.labels.boxHeight = 8;
     Chart.defaults.plugins.legend.position = "top";
     Chart.defaults.plugins.legend.align = "end";
-    Chart.defaults.plugins.tooltip.backgroundColor = "#1f2a24";
+    Chart.defaults.plugins.tooltip.backgroundColor = "#2b2b2b";
     Chart.defaults.plugins.tooltip.padding = 10;
-    Chart.defaults.plugins.tooltip.cornerRadius = 8;
+    Chart.defaults.plugins.tooltip.cornerRadius = 0;
     Chart.defaults.plugins.tooltip.titleFont = { weight: "600" };
     Chart.defaults.animation.duration = 500;
   };
@@ -90,14 +94,22 @@
 
   /* 막대 — opts: {labels, datasets:[{label,data}], unit, horizontal, stacked, colors, endLabel}
      datasets 가 하나면 브랜드 녹색, 여럿이면 팔레트 순서대로 */
+  /* 계열 수에 맞는 색 — 하나면 황갈색, 둘이면 회색·황갈색 듀오톤, 셋 이상이면 검증된 팔레트 */
+  C.colorAt = function (i, n, given) {
+    if (given && given[i]) return given[i];
+    if (n <= 1) return C.brand;
+    if (n === 2) return C.duo[i];
+    return C.palette[i % C.palette.length];
+  };
+
   C.bar = function (canvas, o) {
     C.setup();
     var multi = o.datasets.length > 1;
     var ds = o.datasets.map(function (d, i) {
-      var color = (o.colors && o.colors[i]) || (multi ? C.palette[i % C.palette.length] : C.brand);
+      var color = C.colorAt(i, o.datasets.length, o.colors);
       return {
         label: d.label, data: d.data, backgroundColor: color, hoverBackgroundColor: alpha(color, .85),
-        maxBarThickness: 24, borderRadius: 4, borderSkipped: "start",
+        maxBarThickness: 22, borderRadius: 0, borderSkipped: "start",
         borderColor: o.stacked ? C.surface : undefined, borderWidth: o.stacked ? 2 : 0,
         categoryPercentage: multi ? .72 : .6, barPercentage: multi ? .85 : 1
       };
@@ -125,7 +137,7 @@
     C.setup();
     var multi = o.datasets.length > 1;
     var ds = o.datasets.map(function (d, i) {
-      var color = (o.colors && o.colors[i]) || (multi ? C.palette[i % C.palette.length] : C.brand);
+      var color = C.colorAt(i, o.datasets.length, o.colors);
       return {
         label: d.label, data: d.data, borderColor: color, backgroundColor: alpha(color, .10),
         borderWidth: 2, tension: .3, fill: !multi && o.fill !== false,

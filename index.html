@@ -4,72 +4,96 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>동탄 은혜푸드마켓</title>
-  <meta name="description" content="동탄 은혜푸드마켓(은혜푸드뱅크) — 기탁받은 식품과 생활용품을 어려운 이웃에게 전달합니다. 기탁·배분·회계를 모두 공개하는 투명한 나눔." />
+  <meta name="description" content="동탄 은혜푸드마켓(은혜푸드뱅크) — 기탁받은 식품과 생활용품을 어려운 이웃에게 전달합니다. 기탁·배분·회계를 모두 공개하는 나눔." />
   <meta property="og:title" content="동탄 은혜푸드마켓" />
-  <meta property="og:description" content="투명하게 기록하고, 따뜻하게 나눕니다. 화성시 그냥드림 동탄권 거점." />
-  <meta name="theme-color" content="#1e7a4a" />
+  <meta property="og:description" content="들어온 것과 나간 것을 빠짐없이 기록하고 공개합니다. 화성시 그냥드림 동탄권 거점." />
+  <meta property="og:image" content="images/photo/hero-1.jpg" />
+  <meta name="theme-color" content="#2b2b2b" />
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=2" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Nunito:wght@200;300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=4" />
+  <link rel="preload" as="image" href="images/photo/hero-1.jpg" />
 </head>
 <body>
 <main id="main">
 
-  <!-- ===== 첫 화면 ===== -->
-  <section class="hero">
+  <!-- ===== 첫 화면 슬라이더 (3장) ===== -->
+  <section class="hero" id="hero" aria-roledescription="carousel" aria-label="첫 화면">
+    <div class="hero-slide active" style="background-image:url(images/photo/hero-1.jpg)" data-title="이웃의 식탁에|오르는 것들." data-tag="기록하고, 나누고, 공개합니다"></div>
+    <div class="hero-slide" style="background-image:url(images/photo/hero-2.jpg)" data-title="남는 것이 아니라|나누는 것입니다." data-tag="기탁 · 후원 — 전화 한 통이면 찾아갑니다"></div>
+    <div class="hero-slide" style="background-image:url(images/photo/hero-3.jpg)" data-title="서류 없이,|누구나." data-tag="그냥드림 · 월~금 10:00 – 17:00"></div>
     <div class="hero-inner">
-      <div>
-        <span class="hero-eyebrow"><i></i>기부식품등 제공사업장 · 화성시 그냥드림 동탄권 거점</span>
-        <h1>나눔은 <em>투명하게</em>,<br />이웃에게는 <em>따뜻하게</em></h1>
-        <p class="hero-lead">동탄 은혜푸드마켓은 기업·단체·개인이 기탁한 식품과 생활용품을 어려운 이웃에게 무상으로 전달합니다. 들어온 것과 나간 것을 빠짐없이 기록하고, 누구나 볼 수 있게 공개합니다.</p>
+      <div class="hero-copy">
+        <h1 id="heroTitle">이웃의 식탁에<br />오르는 것들.</h1>
+        <p class="hero-tag" id="heroTag">기록하고, 나누고, 공개합니다</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="use.html">이용 안내</a>
-          <a class="btn btn-orange" href="donate.html">기탁 · 후원하기</a>
-          <a class="btn btn-outline" href="transparency.html">투명 공개 보기</a>
+          <a class="btn btn-tan" href="use.html">이용 안내</a>
+          <a class="btn btn-line" href="donate.html">기탁 · 후원하기</a>
         </div>
       </div>
-      <div class="trust-card" id="trustCard"></div>
+      <div class="hero-nav">
+        <span class="hero-count"><span id="heroIdx">01</span><small>/<span id="heroTotal">03</span></small></span>
+        <div class="hero-arrows">
+          <button type="button" id="heroPrev" aria-label="이전"><svg class="ico"><use href="images/icons.svg#arrow-l"/></svg></button>
+          <button type="button" id="heroNext" aria-label="다음"><svg class="ico"><use href="images/icons.svg#arrow-r"/></svg></button>
+        </div>
+      </div>
     </div>
-    <div class="quick-strip">
-      <div class="container">
-        <a class="qs-card" href="use.html#apply"><span class="qs-icon">🧾</span><span class="qs-title">이용 신청</span><span class="qs-desc">동 행정복지센터로</span></a>
-        <a class="qs-card" href="donate.html#how"><span class="qs-icon">📦</span><span class="qs-title">물품 기탁</span><span class="qs-desc">방법 · 가능 품목</span></a>
-        <a class="qs-card" href="use.html#gnd"><span class="qs-icon">🍚</span><span class="qs-title">그냥드림</span><span class="qs-desc">서류 없이 누구나</span></a>
-        <a class="qs-card" href="about.html#directions"><span class="qs-icon">📍</span><span class="qs-title">오시는 길</span><span class="qs-desc">평일 10:00~17:00</span></a>
-        <a class="qs-card" href="archive.html#press"><span class="qs-icon">📰</span><span class="qs-title">언론 보도</span><span class="qs-desc">활동 아카이브</span></a>
+    <a class="hero-down" href="#programs" aria-label="아래로"><svg class="ico"><use href="images/icons.svg#chev-down"/></svg></a>
+  </section>
+
+  <!-- ===== 세 가지 방식 ===== -->
+  <section class="block block-clip" id="programs">
+    <div class="container split">
+      <div class="split-copy">
+        <h2 class="h-bar">필요한 만큼,<br />직접 고르는 나눔</h2>
+        <p>기탁받은 식품과 생활용품은 세 갈래로 나갑니다. 등록한 가정은 매장에서 직접 고르고, 시설과 거동이 불편한 가정에는 저희가 찾아갑니다. 그냥드림 코너는 서류 없이 누구에게나 열려 있습니다.</p>
+        <a class="tan-link" href="use.html">이용 안내 전체 보기</a>
+      </div>
+      <div class="dark-shelf">
+        <div class="photo-cards">
+          <a class="photo-card" href="use.html#how" style="background-image:url(images/photo/card-market.jpg)">
+            <div class="pc-body"><svg class="ico ico-lg"><use href="images/icons.svg#basket"/></svg><h3>푸드마켓</h3><p>등록한 가정이 월 2회 매장을 찾아 필요한 식품과 생활용품을 직접 고릅니다.</p></div>
+            <span class="pc-btn">자세히 보기 ›</span>
+          </a>
+          <a class="photo-card" href="use.html#how" style="background-image:url(images/photo/card-bank.jpg)">
+            <div class="pc-body"><svg class="ico ico-lg"><use href="images/icons.svg#truck"/></svg><h3>푸드뱅크</h3><p>지역아동센터 · 급식소 · 복지시설과 거동이 불편한 가정에 정해진 날 물품을 전합니다.</p></div>
+            <span class="pc-btn">자세히 보기 ›</span>
+          </a>
+          <a class="photo-card" href="use.html#gnd" style="background-image:url(images/photo/card-gnd.jpg)">
+            <div class="pc-body"><svg class="ico ico-lg"><use href="images/icons.svg#bowl"/></svg><h3>그냥드림</h3><p>신분증도 서류도 없이, 누구나 필요한 먹거리와 생필품을 가져갑니다. 평일 10시부터 5시까지.</p></div>
+            <span class="pc-btn">자세히 보기 ›</span>
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== 투명성 원칙 ===== -->
-  <section class="block">
+  <!-- ===== 왜 기록하고 공개하는가 ===== -->
+  <section class="block bg-cream">
     <div class="container">
-      <div class="sec-head">
+      <h2 class="h-bar">왜 은혜푸드마켓인가</h2>
+      <div class="why mt-4">
         <div>
-          <span class="sec-eyebrow">OUR PROMISE</span>
-          <h2>믿고 맡기실 수 있도록, 세 가지를 지킵니다</h2>
-          <p class="sec-desc">기탁하신 물품이 어디로 갔는지, 후원금이 어떻게 쓰였는지 언제든 확인할 수 있어야 한다고 믿습니다.</p>
+          <div class="big-num"><span class="n" id="bigYears">11<small>년째</small></span><span class="l">2016년 3월부터 동탄에서 먹거리를 나누고, 그 기록을 남겨 왔습니다.</span></div>
         </div>
-      </div>
-      <div class="principles">
-        <div class="principle"><span class="p-num">1</span><h3>모두 기록합니다</h3><p>기탁받은 물품은 접수와 동시에 품목·수량·평가액·기탁처를 기록하고, 배분할 때도 같은 방식으로 남깁니다. 경기도·전국푸드뱅크 전산망과 연동됩니다.</p></div>
-        <div class="principle"><span class="p-num">2</span><h3>정기적으로 공개합니다</h3><p>연도별 운영 실적과 결산은 해마다, 월별 접수·전달 통계는 매달 이 홈페이지에 그래프와 표로 공개합니다.</p></div>
-        <div class="principle"><span class="p-num">3</span><h3>외부 점검을 받습니다</h3><p>화성시의 지도·점검과 기부식품등 제공사업장 평가를 받으며, 결과와 개선 사항을 아카이브에 남깁니다.</p></div>
+        <div class="features">
+          <div class="feature"><div class="f-ico"><svg class="ico"><use href="images/icons.svg#ledger"/></svg></div><div><h3>들어온 것과 나간 것</h3><p>기탁받은 물품은 접수하면서 품목과 수량, 평가액, 기탁처를 적습니다. 내보낼 때도 같은 방식으로 남깁니다.</p></div></div>
+          <div class="feature"><div class="f-ico"><svg class="ico"><use href="images/icons.svg#eye"/></svg></div><div><h3>해마다, 달마다 공개</h3><p>연간 실적과 결산은 한 해에 한 번, 접수·전달 통계는 매달 이 홈페이지에 그래프와 표로 올립니다.</p></div></div>
+          <div class="feature"><div class="f-ico"><svg class="ico"><use href="images/icons.svg#shield"/></svg></div><div><h3>바깥의 점검</h3><p>화성시의 지도점검과 기부식품등 제공사업장 평가를 받습니다. 결과와 고친 점은 아카이브에 남깁니다.</p></div></div>
+          <div class="feature"><div class="f-ico"><svg class="ico"><use href="images/icons.svg#link"/></svg></div><div><h3>먹거리 다음의 일</h3><p>물품을 드리는 데서 끝내지 않습니다. 더 필요한 것이 있으면 동 행정복지센터와 연결해 드립니다.</p></div></div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ===== 숫자로 보는 나눔 ===== -->
-  <section class="block bg-cream">
+  <section class="block">
     <div class="container">
       <div class="sec-head">
-        <div>
-          <span class="sec-eyebrow">BY THE NUMBERS</span>
-          <h2>숫자로 보는 나눔</h2>
-          <p class="sec-desc">해마다 접수한 기부물품과 이웃에게 전달한 금액, 이용 현황입니다. 모든 그래프는 표로도 볼 수 있습니다.</p>
-        </div>
+        <div><span class="eyebrow">Transparency</span><h2 class="h-bar">숫자로 보는 나눔</h2></div>
         <a class="more" href="transparency.html">전체 통계 보기</a>
       </div>
       <div class="kpi-row" id="kpiRow"></div>
@@ -77,82 +101,62 @@
     </div>
   </section>
 
-  <!-- ===== 그냥드림 ===== -->
-  <section class="block bg-green-soft">
-    <div class="container two-col">
-      <div>
-        <span class="sec-eyebrow">그냥드림 · 동탄권 거점</span>
-        <h2 style="font-size:1.9rem;margin-bottom:12px">신분증도, 서류도 필요 없습니다</h2>
-        <p class="lead">배고픔 앞에서는 증명이 먼저일 수 없습니다. 그냥드림 코너에서는 누구나 필요한 먹거리와 생필품을 그냥 가져가실 수 있습니다. 필요하다면 이후에 더 알맞은 복지 서비스로 연결해 드립니다.</p>
-        <a class="btn btn-primary" href="use.html#gnd">그냥드림 이용 안내</a>
-      </div>
-      <div class="trust-card">
-        <h3>이용 안내</h3>
-        <div class="tc-row"><span class="tc-label">운영 시간</span><span class="tc-val" style="font-size:1.1rem">월~금 10:00 ~ 17:00</span></div>
-        <div class="tc-row"><span class="tc-label">장소</span><span class="tc-val" style="font-size:1.1rem">동탄 은혜푸드마켓</span></div>
-        <div class="tc-row"><span class="tc-label">준비물</span><span class="tc-val" style="font-size:1.1rem">없음</span></div>
-        <div class="tc-row"><span class="tc-label">찾아가는 그냥드림</span><span class="tc-val" style="font-size:1.1rem">매월 순회 (공지 참고)</span></div>
-        <p class="tc-foot">화성시 · 경기도 · 보건복지부가 함께 운영하는 사업입니다.</p>
+  <!-- ===== 함께한 순간들 ===== -->
+  <section class="block-sm story">
+    <div class="story-bg" style="background-image:url(images/photo/texture-linen.jpg)"></div>
+    <div class="container">
+      <h2 class="h-bar mb-3">함께한 순간들</h2>
+      <div class="story-grid">
+        <div class="story-photo" id="storyPhoto" role="img" aria-label=""></div>
+        <div class="story-panel">
+          <span class="s-date" id="storyDate"></span>
+          <h3 id="storyTitle"></h3>
+          <p id="storyDesc"></p>
+          <div class="story-nav">
+            <span class="hero-count"><span id="storyIdx">01</span><small>/<span id="storyTotal">04</span></small></span>
+            <button type="button" class="arrow-btn" id="storyPrev" aria-label="이전"><svg class="ico"><use href="images/icons.svg#arrow-l"/></svg></button>
+            <button type="button" class="arrow-btn" id="storyNext" aria-label="다음"><svg class="ico"><use href="images/icons.svg#arrow-r"/></svg></button>
+            <a class="tan-link" style="color:#fff;margin-left:auto" href="archive.html#activity">활동 소식</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== 소식 ===== -->
+  <!-- ===== 언론 보도 ===== -->
   <section class="block">
     <div class="container">
       <div class="sec-head">
-        <div>
-          <span class="sec-eyebrow">ARCHIVE</span>
-          <h2>언론이 본 은혜푸드마켓, 그리고 우리의 기록</h2>
-          <p class="sec-desc">발대식부터 오늘까지의 활동과 보도를 모두 남겨 둡니다.</p>
-        </div>
-        <a class="more" href="archive.html">아카이브 전체 보기</a>
+        <div><span class="eyebrow">Press</span><h2 class="h-bar">언론이 본 은혜푸드마켓</h2></div>
+        <a class="more" href="archive.html#press">보도 전체 보기</a>
       </div>
-      <div class="news-grid">
-        <div>
-          <h3 class="section-title" style="font-size:1.2rem">언론 보도</h3>
-          <ul class="news-list" id="homePress"></ul>
-        </div>
-        <div>
-          <h3 class="section-title" style="font-size:1.2rem">활동 소식 · 공지</h3>
-          <ul class="news-list" id="homeNews"></ul>
-        </div>
-      </div>
+      <ul class="news-list" id="homePress"></ul>
     </div>
   </section>
 
-  <!-- ===== 걸어온 길 ===== -->
-  <section class="block bg-gray">
-    <div class="container">
-      <div class="sec-head">
-        <div>
-          <span class="sec-eyebrow">SINCE 2016</span>
-          <h2>동탄에서 걸어온 길</h2>
-        </div>
-        <a class="more" href="about.html#history">연혁 전체 보기</a>
+  <!-- ===== 문의 띠 ===== -->
+  <section class="block-sm bg-cream">
+    <div class="container cta-bar">
+      <div class="cb-copy">
+        <h2 class="h-bar">남는 물품이 있으신가요?</h2>
+        <p>기업의 재고, 마트의 기한 임박 상품, 교회의 명절 나눔 상자, 집에 쌓아 둔 새 생활용품. 양이 많으면 차량으로 찾아가고, 어디로 갔는지 알려 드립니다.</p>
       </div>
-      <ul class="timeline" id="homeHistory"></ul>
-    </div>
-  </section>
-
-  <!-- ===== 기탁 부르기 ===== -->
-  <section class="block bg-dark">
-    <div class="container center">
-      <h2 style="font-size:1.9rem;margin-bottom:10px">남는 것이 아니라, 나누는 것입니다</h2>
-      <p style="max-width:640px;margin:0 auto 24px;color:#c9d3cc">유통기한이 남은 식품, 새 생활용품, 기업의 재고 — 어떤 나눔이든 기록하고 전달하고 보고합니다.</p>
-      <a class="btn btn-orange" href="donate.html">기탁 · 후원 안내 보기</a>
+      <a class="cta-box" href="donate.html#how">
+        <svg class="ico ico-lg"><use href="images/icons.svg#mail"/></svg>
+        <span><span class="cb-small">기탁 · 후원 문의</span><span class="cb-big" id="ctaPhone">전화 한 통이면 찾아갑니다</span></span>
+        <span class="cb-chev">›</span>
+      </a>
     </div>
   </section>
 
 </main>
 
-<script src="js/config.js?v=2"></script>
-<script src="js/layout.js?v=2"></script>
-<script src="data/finance.js?v=2"></script>
-<script src="data/archive.js?v=2"></script>
-<script src="data/history.js?v=2"></script>
+<script src="js/config.js?v=3"></script>
+<script src="js/layout.js?v=3"></script>
+<script src="data/finance.js?v=3"></script>
+<script src="data/archive.js?v=3"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-<script src="js/charts.js?v=2"></script>
-<script src="js/home.js?v=2"></script>
+<script src="js/charts.js?v=3"></script>
+<script src="js/home.js?v=3"></script>
 </body>
 </html>
