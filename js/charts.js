@@ -16,12 +16,12 @@
      계열 둘: 짙은 회색 + 황갈색 듀오톤 — 명도 차이로 구분되므로 누구에게나 읽히며, 범례·표가 함께 붙는다.
      계열 하나: 어두운 황갈색. */
   C.palette = ["#1baf7a", "#eb6834", "#2a78d6", "#eda100", "#4a3aa7", "#e87ba4"];
-  C.duo = ["#2b2b2b", "#c8a27a"];
-  C.brand = "#a9835c";
+  C.duo = ["#33312e", "#c8a27a"];
+  C.brand = "#8a6640";
   C.surface = "#ffffff";
-  C.grid = "#ebe7e1";
-  C.text = "#3d3d3d";
-  C.muted = "#8a8a8a";
+  C.grid = "#e6e2dc";
+  C.text = "#54524d";
+  C.muted = "#8b8781";
 
   function alpha(hex, a) {
     var r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);

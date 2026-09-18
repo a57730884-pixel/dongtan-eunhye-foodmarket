@@ -1,5 +1,6 @@
 /* ============================================================
-   첫 화면 — 슬라이더 · 숫자 타일 · 연도별 그래프 · 함께한 순간들 · 언론 보도
+   첫 화면 — 사진 슬라이더 · 숫자 타일 · 연도별 그래프 · 언론 보도
+   (함께한 순간들 갤러리는 js/gallery.js 에 있습니다)
    ============================================================ */
 (function () {
   var F = window.FINANCE, A = window.ARCHIVE || [], O = window.ORG || {}, esc = EFM.esc;
@@ -11,6 +12,7 @@
   (function () {
     var slides = [].slice.call(document.querySelectorAll(".hero-slide")), i = 0, timer;
     var title = document.getElementById("heroTitle"), tag = document.getElementById("heroTag"), idx = document.getElementById("heroIdx");
+    var cap = document.getElementById("heroCap");
     document.getElementById("heroTotal").textContent = pad2(slides.length);
     function show(n) {
       i = (n + slides.length) % slides.length;
@@ -18,6 +20,7 @@
       var s = slides[i];
       title.innerHTML = esc(s.dataset.title).split("|").join("<br>");
       tag.textContent = s.dataset.tag;
+      if (cap) cap.textContent = s.dataset.caption || "";
       idx.textContent = pad2(i + 1);
     }
     function auto() { clearInterval(timer); timer = setInterval(function () { show(i + 1); }, 7000); }
@@ -26,7 +29,11 @@
     var hero = document.getElementById("hero");
     hero.addEventListener("mouseenter", function () { clearInterval(timer); });
     hero.addEventListener("mouseleave", auto);
-    document.addEventListener("keydown", function (e) { if (e.key === "ArrowRight") { show(i + 1); auto(); } if (e.key === "ArrowLeft") { show(i - 1); auto(); } });
+    document.addEventListener("keydown", function (e) {
+      if (document.querySelector(".lb.open")) return;
+      if (e.key === "ArrowRight") { show(i + 1); auto(); }
+      if (e.key === "ArrowLeft") { show(i - 1); auto(); }
+    });
     show(0); auto();
   })();
 
@@ -78,29 +85,6 @@
     });
   }
 
-  /* ---- 함께한 순간들 (사진 슬라이더) ---- */
-  (function () {
-    var stories = [
-      { img: "images/photo/story-1.jpg", date: "2026.08.19", title: "찾아가는 그냥드림, 동탄9동 첫 순회", desc: "행정복지센터 앞에 부스를 열고 먹거리와 생필품을 전했습니다. 거동이 불편해 사업장까지 오기 어려웠던 이웃들이 많이 찾아 주셨습니다.", href: "archive.html#activity?id=a-2026-08-19" },
-      { img: "images/photo/story-2.jpg", date: "2026.05.14", title: "㈜미트리 가정의 달 기탁, 제품 1,240개", desc: "기탁 물품은 접수 즉시 기록하고 이용 가정에 순차적으로 전달했습니다. 따뜻한 나눔에 감사드립니다.", href: "archive.html#activity?id=a-2026-05-14" },
-      { img: "images/photo/story-3.jpg", date: "2026.01.15", title: "그냥드림 동탄권 거점 운영 시작", desc: "신분증도 서류도 없이 필요한 물품을 가져갈 수 있는 코너를 열었습니다. 이용 뒤 필요한 분은 동 행정복지센터와 연결합니다.", href: "archive.html#activity?id=a-2026-01-15" },
-      { img: "images/photo/story-4.jpg", date: "2018.07.21", title: "장안면 어르신 초청 작은 음악회", desc: "행복나눔오케스트라, 나눔의교회, 에바다중창단과 함께 어르신 80분을 모시고 공연과 식사를 나눴습니다.", href: "archive.html#activity?id=a-2018-07-21" }
-    ];
-    var i = 0, photo = document.getElementById("storyPhoto"); if (!photo) return;
-    document.getElementById("storyTotal").textContent = pad2(stories.length);
-    function show(n) {
-      i = (n + stories.length) % stories.length; var s = stories[i];
-      photo.style.backgroundImage = "url(" + s.img + ")"; photo.setAttribute("aria-label", s.title);
-      document.getElementById("storyDate").textContent = s.date;
-      document.getElementById("storyTitle").innerHTML = '<a href="' + esc(s.href) + '">' + esc(s.title) + "</a>";
-      document.getElementById("storyDesc").textContent = s.desc;
-      document.getElementById("storyIdx").textContent = pad2(i + 1);
-    }
-    document.getElementById("storyPrev").addEventListener("click", function () { show(i - 1); });
-    document.getElementById("storyNext").addEventListener("click", function () { show(i + 1); });
-    show(0);
-  })();
-
   /* ---- 언론 보도 ---- */
   var pl = document.getElementById("homePress");
   if (pl) {
@@ -111,4 +95,8 @@
   }
 
   var cp = document.getElementById("ctaPhone"); if (cp && O.phone) cp.textContent = O.phone + " · 전화 한 통이면 찾아갑니다";
+
+  /* ---- 첫 화면 정보줄 ---- */
+  var fh = document.getElementById("factHours"); if (fh && O.hours) fh.textContent = O.hours.replace(/~/g, "–");
+  var fp = document.getElementById("factPhone"); if (fp && O.phone) fp.textContent = O.phone;
 })();
