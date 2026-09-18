@@ -65,16 +65,18 @@ Kristián Balco 의 Bartfay 웹디자인 구성을 기준으로 잡았습니다(
 
 ## 4. 사진
 
-첫 화면 3장과 갤러리 12장은 **실제 현장 사진**입니다(2019~2026년 기탁 전달식 · 사업장 · 창립 10주년).
-페이지 배너와 카드 사진은 아직 로컬 ComfyUI(Flux.1-schnell)로 만든 뒤 `tools/prep_photos.py` 로 톤을 맞춘 것이라,
-실제 사진으로 바꾸면 훨씬 좋습니다 — **같은 파일 이름으로 덮어쓰기만 하면** 됩니다.
+`images/` 의 사진은 모두 **실제 현장 사진**입니다(2019~2026년 기탁 전달식 · 물류 상차 · 사업장 · 창립 10주년).
+바꿀 때는 **같은 파일 이름으로 덮어쓰고**, HTML 의 `?v=` 숫자를 하나 올리면 됩니다(브라우저가 옛 사진을 기억하지 않도록).
+
+배너는 사진 위에 흰 장막을 덮어 글을 얹으므로, **현수막 글자가 큰 부분은 잘라 내고** 밝은 윗부분을 씁니다.
 
 | 파일 | 쓰이는 곳 | 권장 |
 |---|---|---|
-| `hero-10th.jpg` `hero-store.jpg` `hero-share.jpg` | 첫 화면 슬라이더 | 5:4, 가로 1600 (실제 사진) |
-| `banner-*.jpg` | 각 페이지 상단 | 가로 1920, 흰 장막을 덮으므로 밝은 편이 좋음 |
-| `card-market.jpg` `card-bank.jpg` `card-gnd.jpg` | 세 가지 나눔 방식 | 세로로 긴 편(4:3), 위쪽이 중심 |
-| `images/gallery/g01~g12.jpg` | 함께한 순간들 | 4:3, 가로 1280 · 목록용 `-t.jpg` 는 가로 560 (실제 사진) |
+| `hero-10th.jpg` `hero-store.jpg` `hero-share.jpg` | 첫 화면 슬라이더 | 5:4, 가로 1600 |
+| `banner-*.jpg` | 각 페이지 상단 | 3.5:1 띠, 가로 1920 (analyze 만 1400) |
+| `card-market.jpg` `card-bank.jpg` `card-gnd.jpg` | 첫 화면의 나눔 방식 카드 · `use.html` 의 카드 썸네일 | 4:3, 가로 1200 |
+| `place-front.jpg` | `about.html` 오시는 길 | 3:2, 가로 1400 |
+| `images/gallery/g01~g12.jpg` | 함께한 순간들 | 4:3, 가로 1280 · 목록용 `-t.jpg` 는 가로 560 |
 | `story-1~4.jpg` `hero-1~3.jpg` | 지금은 쓰지 않음 (이전 판 사진) | — |
 
 새로 만들 때:
@@ -104,9 +106,9 @@ python tools/prep_photos.py <원본 폴더>
 - [ ] 후원 계좌 · 고유번호 · 이메일 · 팩스 (`js/config.js`)
 - [ ] 실제 결산 · 운영실적 수치 (`data/finance.js`, `meta.sample: false`)
 - [ ] 결산서 PDF (`docs/` 폴더 + `data/finance.js` documents)
-- [x] **실제 현장 사진** — 첫 화면 3장 · 갤러리 12장 완료
-- [ ] 페이지 배너 · 카드 사진을 실제 사진으로 (`images/photo/banner-*.jpg`, `card-*.jpg`) · 실제 로고
-- [ ] 갤러리 사진 속 인물의 게시 동의 확인 (`js/gallery.js`)
+- [x] **실제 현장 사진** — 첫 화면 3장 · 갤러리 12장 · 배너 6장 · 카드 3장 · 오시는 길 1장 완료
+- [ ] 실제 로고 (`images/logo.svg`, `images/favicon.svg`)
+- [ ] 사진 속 인물의 게시 동의 확인 (`js/gallery.js`, 배너 · 카드 사진)
 - [ ] 인사말 원문 · 조직도 · 직원 현황 (`about.html`)
 - [ ] 가까운 버스 정류장 (`about.html` 오시는 길)
 - [ ] 기탁처 명단의 게시 동의 (`donate.html`)

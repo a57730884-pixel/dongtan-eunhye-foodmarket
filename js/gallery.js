@@ -40,7 +40,7 @@
   lb.setAttribute("aria-modal", "true");
   lb.setAttribute("aria-label", "사진 크게 보기");
   lb.innerHTML =
-    '<figure class="lb-fig"><img id="lbImg" src="" alt="" />' +
+    '<figure class="lb-fig"><img id="lbImg" alt="" />' +
     '<figcaption class="lb-cap"><span class="c-date" id="lbDate"></span><span class="c-title" id="lbTitle"></span><span class="c-note" id="lbNote"></span></figcaption></figure>' +
     '<button type="button" class="lb-close" id="lbClose" aria-label="닫기">✕</button>' +
     '<button type="button" class="lb-prev" id="lbPrev" aria-label="이전 사진"><svg class="ico"><use href="images/icons.svg#arrow-l"/></svg></button>' +
